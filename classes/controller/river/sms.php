@@ -33,9 +33,9 @@ class Controller_River_SMS extends Controller_River_Settings {
 		$token = $this->river->public_token;
 		$sms_base_url = $this->river->account->account_path.'/river/'.$this->river->river_name_url.'/sms/';
 		
-		$smssync = $sms_base_url.'smssync/'.$token;
-		$frontlinesms = $sms_base_url.'frontlinesms/'.$token;
-		$clickatell = $sms_base_url.'clickatell/'.$token;
-		$twilio = $sms_base_url.'twilio/'.$token;
+		$smssync = $sms_base_url.'smssync?at='.$token;
+		$frontlinesms = $sms_base_url.'frontlinesms?at='.$token;
+		$clickatell = $sms_base_url.'clickatell?at='.$token;
+		$twilio = $sms_base_url.'twilio?at='.$token;
 	}
 }

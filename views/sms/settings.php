@@ -13,7 +13,7 @@
 					<div class="parameter">
 						<label for="site_locale">
 							<p class="field"><?php echo __("Endpoint:"); ?></p>
-							<input type="text" value="<?php echo URL::base('http', TRUE).$smssync; ?>" name="smssync" id="smssync" disabled="disabled" />
+							<?php echo URL::base('http', TRUE).$smssync; ?>
 						</label>
 					</div>
 				</section>
@@ -30,7 +30,7 @@
 					<div class="parameter">
 						<label for="site_locale">
 							<p class="field"><?php echo __("Endpoint:"); ?></p>
-							<input type="text" value="<?php echo URL::base('http', TRUE).$frontlinesms; ?>" name="frontlinesms" id="frontlinesms" disabled="disabled" />
+							<?php echo URL::base('http', TRUE).$frontlinesms; ?>
 						</label>
 					</div>
 				</section>
@@ -47,7 +47,7 @@
 					<div class="parameter">
 						<label for="site_locale">
 							<p class="field"><?php echo __("Endpoint:"); ?></p>
-							<input type="text" value="<?php echo URL::base('http', TRUE).$clickatell; ?>" name="clickatell" id="clickatell" disabled="disabled" />
+							<?php echo URL::base('http', TRUE).$clickatell; ?>
 						</label>
 					</div>
 				</section>
@@ -64,7 +64,7 @@
 					<div class="parameter">
 						<label for="site_locale">
 							<p class="field"><?php echo __("Endpoint:"); ?></p>
-							<input type="text" value="<?php echo URL::base('http', TRUE).$twilio; ?>" name="twilio" id="twilio" disabled="disabled" />
+							<?php echo URL::base('http', TRUE).$twilio; ?>
 						</label>
 					</div>
 				</section>

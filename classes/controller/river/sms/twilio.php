@@ -25,13 +25,30 @@ class Controller_River_SMS_Twilio extends Controller_River_SMS_Base {
 
 		$this->provider = 'twilio';
 
-		$this->from = filter_input(INPUT_POST | INPUT_GET, 'From',
+		$this->from = filter_input(INPUT_POST, 'From',
 			FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$this->message = filter_input(INPUT_POST | INPUT_GET, 'Body',
+		$this->message = filter_input(INPUT_POST, 'Body',
 			FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$this->message_id = filter_input(INPUT_POST | INPUT_GET, 'SmsSid',
+		$this->message_id = filter_input(INPUT_POST, 'SmsSid',
 			FILTER_SANITIZE_SPECIAL_CHARS);
+	}
+	
+	
+	/**
+	 * @return	void
+	 */
+	public function after()
+	{
+		// Execute parent::after first
+		parent::after();
+
+		if ($this->processed)
+		{
+			// Let SMSSync know the delivery was successful
+			$this->response->headers('Content-Type', 'application/json');
+			echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Response>\n</Response>\n";
+		}
 	}
 }

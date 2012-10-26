@@ -27,18 +27,6 @@ return array(
 
 		// Fields
 		'channel_options' => array(
-			'keyword' => array(
-				'label' => __('Keyword'),
-				'type' => 'text',
-				'values' => array(),
-				'placeholder' => 'E.g. Ushahidi, "African Tech" For multiple keywords, separate each keyword with a ","'
-			),
-			'phone' => array(
-				'label' => __('Phone Number'),
-				'type' => 'text',
-				'values' => array(),
-				'placeholder' => 'With Country Code e.g. 1404000000'
-			)
 		),
 
 		// Has Settings

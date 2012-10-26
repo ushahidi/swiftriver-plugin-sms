@@ -25,16 +25,15 @@ class Controller_River_SMS_Smssync extends Controller_River_SMS_Base {
 
 		$this->provider = 'smssync';
 
-		$this->from = filter_input(INPUT_POST | INPUT_GET, 'from',
+		$this->from = filter_input(INPUT_POST, 'from',
+			FILTER_SANITIZE_SPECIAL_CHARS);
+		$this->message = filter_input(INPUT_POST, 'message',
 			FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$this->message = filter_input(INPUT_POST | INPUT_GET, 'message',
+		$this->timestamp = filter_input(INPUT_POST, 'sent_timestamp',
 			FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$this->timestamp = filter_input(INPUT_POST | INPUT_GET, 'sent_timestamp',
-			FILTER_SANITIZE_SPECIAL_CHARS);
-
-		$this->message_id = filter_input(INPUT_POST | INPUT_GET, 'message_id',
+		$this->message_id = filter_input(INPUT_POST, 'message_id',
 			FILTER_SANITIZE_SPECIAL_CHARS);
 	}
 

@@ -13,7 +13,7 @@
  * @copyright  Ushahidi - http://www.ushahidi.com
  * @license	   http://www.gnu.org/copyleft/gpl.html GNU General Public License v3 (GPLv3) 
  */
-class Controller_River_SMS_Base extends Controller {
+class Controller_River_SMS_Base extends Controller_River {
 
 	/**
 	 * ORM reference for the currently selected river
@@ -65,14 +65,8 @@ class Controller_River_SMS_Base extends Controller {
 		// Execute parent::before first
 		parent::before();
 
-		// Get the river name from the url
-		$river_name_url = $this->request->param('name');
-		
-		// This check should be made when this controller is accessed
-		// and the database id of the rive is non-zero
-		$this->river = ORM::factory('river')
-			->where('river_name_url', '=', $river_name_url)
-			->find();
+		$this->template = "";
+		$this->auto_render = FALSE;
 	}
 
 	public function action_index()
@@ -81,7 +75,7 @@ class Controller_River_SMS_Base extends Controller {
 		if ( $this->river->loaded() )
 		{
 			// Retreive token from route
-			$token = $this->request->param('token', 0);
+			$token = $this->request->query('at', NULL);
 
 			// Is this a valid token and does this river have
 			// an SMS channel?
@@ -101,18 +95,21 @@ class Controller_River_SMS_Base extends Controller {
 					$droplet['channel'] = 'sms';
 					$droplet['river_id'] = array($this->river->id);
 					$droplet['identity_orig_id'] = $this->from;
+					$droplet['identity_username'] = $this->from;
 					$droplet['identity_name'] = $this->from;
 					$droplet['identity_avatar'] = null;
-					$droplet['droplet_orig_id'] = ($this->message_id) ? $this->provider.'_'.$this->message_id : strtotime('now');
+					$droplet['droplet_orig_id'] = $this->message_id ? 
+												  $this->provider.'_'.$this->message_id : 
+												  $this->provider.'_'.md5($this->from.$this->message);
 					$droplet['droplet_type'] = 'original';
 					$droplet['droplet_title'] = $this->message;
 					$droplet['droplet_raw'] = $droplet['droplet_content'] = $this->message;
 					$droplet['droplet_date_pub'] = ($this->timestamp) ? 
-						gmdate("Y-m-d H:i:s", strtotime($this->timestamp)) :
+						gmdate("Y-m-d H:i:s", $this->timestamp) :
 						gmdate("Y-m-d H:i:s",time());
 					
-					// Add droplet to the queue
-					Swiftriver_Dropletqueue::add($droplet);
+					// Create the drop
+					Swiftriver_Dropletqueue::create_drop($droplet);
 
 					$this->processed = TRUE;
 				}

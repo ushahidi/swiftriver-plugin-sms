@@ -39,7 +39,7 @@ new Sms_Init;
 /**
  * River SMS Endpoint Routes
  */
-Route::set('river_sms', '<account>/river/<name>/sms(/<controller>(/<token>))')
+Route::set('river_sms', '<account>/river/<name>/sms(/<controller>)')
 	->defaults(array(
 		'action'     => 'index',
 		'directory'  => 'river/sms'

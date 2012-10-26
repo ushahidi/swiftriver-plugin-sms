@@ -25,10 +25,10 @@ class Controller_River_SMS_Frontlinesms extends Controller_River_SMS_Base {
 
 		$this->provider = 'frontlinesms';
 
-		$this->from = filter_input(INPUT_POST | INPUT_GET, 'from',
+		$this->from = filter_input(INPUT_GET, 'from',
 			FILTER_SANITIZE_SPECIAL_CHARS);
 
-		$this->message = filter_input(INPUT_POST | INPUT_GET, 'message',
+		$this->message = filter_input(INPUT_GET, 'message',
 			FILTER_SANITIZE_SPECIAL_CHARS);
 	}
 }
