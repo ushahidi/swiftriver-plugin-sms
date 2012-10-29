@@ -31,7 +31,7 @@ class Controller_River_SMS_Smssync extends Controller_River_SMS_Base {
 			FILTER_SANITIZE_SPECIAL_CHARS);
 
 		$this->timestamp = filter_input(INPUT_POST, 'sent_timestamp',
-			FILTER_SANITIZE_SPECIAL_CHARS);
+			FILTER_SANITIZE_SPECIAL_CHARS)/1000;
 
 		$this->message_id = filter_input(INPUT_POST, 'message_id',
 			FILTER_SANITIZE_SPECIAL_CHARS);

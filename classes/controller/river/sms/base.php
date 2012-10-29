@@ -104,9 +104,9 @@ class Controller_River_SMS_Base extends Controller_River {
 					$droplet['droplet_type'] = 'original';
 					$droplet['droplet_title'] = $this->message;
 					$droplet['droplet_raw'] = $droplet['droplet_content'] = $this->message;
-					$droplet['droplet_date_pub'] = ($this->timestamp) ? 
-						gmdate("Y-m-d H:i:s", $this->timestamp) :
-						gmdate("Y-m-d H:i:s",time());
+					$droplet['droplet_date_pub'] = empty($this->timestamp) ? 
+						date("Y-m-d H:i:s") :
+						date("Y-m-d H:i:s", $this->timestamp);
 					
 					// Create the drop
 					Swiftriver_Dropletqueue::create_drop($droplet);
