@@ -42,5 +42,5 @@ new Sms_Init;
 Route::set('river_sms', '<account>/river/<name>/sms(/<controller>)')
 	->defaults(array(
 		'action'     => 'index',
-		'directory'  => 'river/sms'
+		'directory'  => 'river/SMS'
 	));
